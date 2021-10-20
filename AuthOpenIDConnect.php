@@ -73,10 +73,11 @@
 
             try {
                 if($oidc->authenticate()){
-                    $username = $oidc->requestUserInfo('preferred_username');
-                    $email = $oidc->requestUserInfo('email');
-                    $givenName = $oidc->requestUserInfo('given_name');
-                    $familyName = $oidc->requestUserInfo('family_name');
+                    $user_data = $oidc->requestUserInfo();
+                    $username = $user_data->preferred_username;
+                    $email = $user_data->email;
+                    $givenName = $user_data->given_name;
+                    $familyName = $user_data->family_name;
     
                     $user = $this->api->getUserByName($username);
     
